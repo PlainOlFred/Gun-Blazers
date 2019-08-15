@@ -1,3 +1,27 @@
+/* PlayerCard */
+.playerCard{
+    border: 2px solid grey;
+    height: 100px;
+    width: 80px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.playerCardName{
+    color: green;
+    text-align: center
+}
+
+.playerCardHp{
+    color: green;
+}
+
+h4{
+    clear: both;
+    overflow: auto;
+}
+
 
 /* style attack and Defend Butoon */
 #defendText{
@@ -9,9 +33,18 @@
 #attackButton:active{
     background-color: red;
     outline: 2px solid red;
+    color: white;
 }
 #defendButton:active{
     background-color: green;
     outline: 2px solid green;
+    color: white;
+}
+
+
+#choosePlayerLine{
+    background-color: grey;
+    margin: 0;
+    display: inline;
 }
 

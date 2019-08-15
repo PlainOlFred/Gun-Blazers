@@ -1,50 +1,98 @@
+$(document).ready(function(){
+
+
+
 //Characters
 let warrior = {
-    name: 'player 1',
+    name: 'Warrior',
+    pic: '../images/animal-1.jpg',
     hp: 200,
     attack: 5,
     defend: 5
 };
 
 let sorcerer= {
-    name: 'Player 2',
+    name: 'Sorcerer',
+    pic: '../images/SB_pic.jpg',
     hp: 70,
     attack: 10,
     defend: 10
 };
 
 let elf = {
-    name: 'Player 3',
+    name: 'Elf',
+    pic: '../images/SB_pic.jpg',
     hp: 500,
     attack: 2,
     defend: 2
 };
 
 let wizard = {
-    name: 'Player 4',
+    name: 'Wizard',
+    pic: '../images/SB_pic.jpg',
     hp: 100,
     attack: 5,
     defend: 2
 };
 
 let rouge = {
-    name: 'Player 5',
+    name: 'Rouge',
+    pic: '../images/SB_pic.jpg',
     hp: 80,
     attack: 5,
     defend: 20
 };
 
 
-let choosePlayerArray = [];
-let chooseEnemyArray = [];
-let enemy = [];
-let defeatedEnemy = []
 
-let fight = function() {
+
+let players = [warrior, sorcerer, elf, wizard, rouge];
+let test = ['a', 'b', 'c']
+
+//create player card
+$('#startGameButton').click(function(){
+    $(this).hide();
+    createPlayerCard = function(){
+    }
     
+    players.forEach(function(player){
+        $('#choosePlayerLine').append(
+            $(`<div class="playerCard"><div class="playerCardName">${player.name}</div>  <div class="playerCardHp>${player.hp}</div></div>`)
+        )
+        $('.playerCardName').css({
+            'color': 'blue',
+            'text-algin' : 'center',
+            'padding-top' : '10px'
+        })
+        
+    });
+});
+
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function fight(x) {
+    return x;
 
 };
 
-let heal = function( ){
-
+function defend(x ){
+    return x;
 };
+
+
+
+
