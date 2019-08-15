@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="asset/css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
     <title>RPG</title>
 </head>
 <body>
     <h1>Roll Playing Game</h1>
     <h4>Choose Your  Character</h4>
-    <div id="choosenOne">
-
-    </div>
+    <div id="chooseCharacterLine"></div>
     <h4>Enemies to Destory</h4>
     <div id="Enemies">
 
@@ -22,13 +22,14 @@
     <div id="curentAttacker">
 
     </div>
-    <button tid="attackButton" type="button">Attack</button>
-    <button id="defendButton">Defend</button>
+    <button id="attackButton" type="button"><h6 id="attackText">Attack</h6></button>
+    <button id="defendButton"><h6 id="defendText">Defend</h6></button>
     <h4>Defeated Enemies</h4>
     <div id="deaftedEnemies">
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="assets/javascript/game.js"></script>
 
     
