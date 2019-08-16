@@ -57,13 +57,19 @@ $('#startGameButton').click(function(){
     
     players.forEach(function(player){
         $('#choosePlayerLine').append(
-            $(`<div class="playerCard"><div class="playerCardName">${player.name}</div>  <div class="playerCardHp>${player.hp}</div></div>`)
+            $(`<div class="playerCard">
+                <div class="playerCardName">
+                    ${player.name}
+                </div> 
+                <div class="playerCardHp">
+                    ${player.hp}
+                </div>
+                <div>
+                    <img src=${player.pic}/>
+                </div>
+            </div>`)
         )
-        $('.playerCardName').css({
-            'color': 'blue',
-            'text-algin' : 'center',
-            'padding-top' : '10px'
-        })
+    
         
     });
 });
