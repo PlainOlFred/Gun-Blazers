@@ -4,7 +4,8 @@ $(document).ready(function(){
 
     //Characters try creating a factory
     let warrior = {
-        name: 'Warrior',
+        name: 'warrior',
+        class: 'warrior',
         pic: '../images/animal-1.jpg',
         hp: 200,
         attack: 5,
@@ -13,7 +14,7 @@ $(document).ready(function(){
     };
 
     let sorcerer= {
-        name: 'Sorcerer',
+        name: 'sorcerer',
         pic: '../images/SB_pic.jpg',
         hp: 70,
         attack: 10,
@@ -63,31 +64,35 @@ $(document).ready(function(){
     //create player card
     $('#instructionsText').text('Choose Your Player')
     players.forEach(function(player){
-        $('#choosePlayerLine').append(
-            $(`<div class="playerCard" id="playerCard${player.name}">
-                <div class="playerCardName">
-                    ${player.name}
-                </div> 
-                <div>
-                    <img src=" "/>
-                </div>
-                <div class="playerCardHp">
-                    ${player.hp}
-                </div>
-            </div>`)
-        )
+        let playerCard = $(`<div class="playerCard" id="playerCard${player.name}">
+                                <div class="playerCardName">
+                                    ${player.name}
+                                </div> 
+                                <div>
+                                    <img src=" ">
+                                </div>
+                                <div class="playerCardHp">
+                                    ${player.hp}
+                                </div>
+                            </div>`);
+
+        playerCard.attr('dataObject', player);
+
+        $('#choosePlayerLine').append(playerCard)
         
     });
 
     //click to choose player
     $('.playerCard').click(function(){//check selected selector syntax
-        
+            let playerList = players;
+            currentPlayer = playerList[playerList];
+            console.log(playerList);
             $('#instructionsText').text('Choose Your Opponent')
             if(!playerSelect){
-                $('#yourPlayerText').text('Your Player');
                 $('#yourPlayerLine').append($(this));
-                $(this).unbind();
-                currentPlayer = players[$.inArray(elf, players)];//placeholder
+                $(this).unbind();            
+                console.log(currentPlayer);
+            
                 playerSelect = true;
 
             } else if(!opponentSelect){
