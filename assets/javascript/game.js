@@ -1,64 +1,45 @@
 $(document).ready(function(){
+    
+    //CreatePlayer factory
+    const createPlayer = function(name, hp , attack, counterAttack, defend, pic){
+        let n = name;
+        let h = hp;
+        let a = attack;
+        let c = counterAttack;
+        let d = defend;
+        let p = pic;
 
+        return {
+            name: n,
+            pic: p,
+            hp: h,
+            attack: a,
+            counterAttack: c,
+            defend: d
 
+        }
 
-    //Characters try creating a factory
-    let warrior = {
-        name: 'warrior',
-        class: 'warrior',
-        pic: '../images/animal-1.jpg',
-        hp: 200,
-        attack: 5,
-        counterAttack: 5,
-        defend: 5
-    };
+    }
 
-    let sorcerer= {
-        name: 'sorcerer',
-        pic: '../images/SB_pic.jpg',
-        hp: 70,
-        attack: 10,
-        counterAttack: 5,
-        defend: 10
-    };
+    let warrior = createPlayer('warrior', 200, 5, 5, 5, '../images/animal-1.jpg')
+    let sorcerer = createPlayer('sorcerer', 70, 10, 5, 10, '../images/SB_pic.jpg')
+    let elf = createPlayer('Elf', 500, 2, 5, 2, '../images/animal-1.jpg')
+    let wizard = createPlayer('Wizard', 100, 5, 5, 3, '../images/animal-1.jpg')
+    let rouge = createPlayer('Rouge', 80, 5, 5, 20, '../images/animal-1.jpg')
 
-    let elf = {
-        name: 'Elf',
-        pic: '../images/SB_pic.jpg',
-        hp: 500,
-        attack: 2,
-        counterAttack: 5,
-        defend: 2
-    };
+    let players = [warrior, sorcerer, elf, wizard, rouge]
 
-    let wizard = {
-        name: 'Wizard',
-        pic: '../images/SB_pic.jpg',
-        hp: 100,
-        attack: 5,
-        counterAttack: 5,
-        defend: 2
-    };
-
-    let rouge = {
-        name: 'Rouge',
-        pic: '../images/SB_pic.jpg',
-        hp: 80,
-        attack: 5,
-        counterAttack: 5,
-        defend: 20
-    };
-
-
-
-
-
-
-    let players = [warrior, sorcerer, elf, wizard, rouge];
+    //player select variable
     let playerSelect = false;
     let opponentSelect= false;
     let currentPlayer = warrior;
     let currentOpponent = elf;
+   
+
+    
+
+    
+
 
 
     //create player card
@@ -74,24 +55,26 @@ $(document).ready(function(){
                                 <div class="playerCardHp">
                                     ${player.hp}
                                 </div>
-                            </div>`);
+                            </div>`
+                            );
 
-        playerCard.attr('dataObject', player);
-
+        
+        $('#playerCard').addClass('playerCard')
         $('#choosePlayerLine').append(playerCard)
+        playerCard.attr('dataObject', player) //might need to access Data
         
     });
 
     //click to choose player
     $('.playerCard').click(function(){//check selected selector syntax
             let playerList = players;
-            currentPlayer = playerList[playerList];
+            currentPlayer = 'playerCard.dataObject;'
             console.log(playerList);
             $('#instructionsText').text('Choose Your Opponent')
             if(!playerSelect){
                 $('#yourPlayerLine').append($(this));
                 $(this).unbind();            
-                console.log(currentPlayer);
+                console.log('CP ' +currentPlayer);
             
                 playerSelect = true;
 
@@ -106,6 +89,9 @@ $(document).ready(function(){
         
             })
         
+
+
+
     
     $('#attackButton').click(function(){
         console.log('attack')
