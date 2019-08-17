@@ -8,6 +8,7 @@ $(document).ready(function(){
         pic: '../images/animal-1.jpg',
         hp: 200,
         attack: 5,
+        counterAttack: 5,
         defend: 5
     };
 
@@ -16,6 +17,7 @@ $(document).ready(function(){
         pic: '../images/SB_pic.jpg',
         hp: 70,
         attack: 10,
+        counterAttack: 5,
         defend: 10
     };
 
@@ -24,6 +26,7 @@ $(document).ready(function(){
         pic: '../images/SB_pic.jpg',
         hp: 500,
         attack: 2,
+        counterAttack: 5,
         defend: 2
     };
 
@@ -32,6 +35,7 @@ $(document).ready(function(){
         pic: '../images/SB_pic.jpg',
         hp: 100,
         attack: 5,
+        counterAttack: 5,
         defend: 2
     };
 
@@ -40,6 +44,7 @@ $(document).ready(function(){
         pic: '../images/SB_pic.jpg',
         hp: 80,
         attack: 5,
+        counterAttack: 5,
         defend: 20
     };
 
