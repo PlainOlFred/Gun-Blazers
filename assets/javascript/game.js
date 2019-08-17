@@ -21,7 +21,7 @@ $(document).ready(function(){
 
     }
 
-    let warrior = createPlayer('warrior', 200, 5, 5, 5, '../images/animal-1.jpg')
+    let warrior = createPlayer('warrior', 200, 1, 1, 1, '../images/animal-1.jpg')
     let sorcerer = createPlayer('sorcerer', 70, 10, 5, 10, '../images/SB_pic.jpg')
     let elf = createPlayer('Elf', 500, 2, 5, 2, '../images/animal-1.jpg')
     let wizard = createPlayer('Wizard', 100, 5, 5, 3, '../images/animal-1.jpg')
@@ -33,8 +33,23 @@ $(document).ready(function(){
     //player select variable
     let playerSelect = false;
     let opponentSelect= false;
-    let currentPlayer = warrior;
-    let currentOpponent = elf;
+    
+
+    //Action variables 
+    let playerName = ' '
+    let playerHp = 1;
+    let playerAttack = 0;
+    let playerCounterAttack = 0;
+    let playerDefned = 0;
+
+    let opponentName = ' '
+    let opponentHp = 1;
+    let opponentAttack = 0;
+    let opponentCounterAttack = 0;
+    let opponentDefned = 0;
+
+    
+
    
 
     
@@ -59,25 +74,41 @@ $(document).ready(function(){
         </div>`
         );
         playerCard.addClass('playerCard')
-        playerCard.attr('dataObject', player) //might need to access Data
+        //need to access Data
+        playerCard.attr('dataHp', player.hp) 
+        playerCard.attr('dataAttack', player.attack)
+        playerCard.attr('dataCounterAttack', player.counterAttack)
+        playerCard.attr('dataDefend', player.defend)
         playerCards.push(playerCard)
     });
-
+    //print cards 
     $('#choosePlayerLine').append(playerCards)
  
 
     //click to choose player
     $('.playerCard').click(function(){
-            // currentPlayer = $(this).playerCard['dataObject'];
+           
+           
             $('#instructionsText').text('Choose Your Opponent')
             if(!playerSelect){
+
+                playerHp =$(this).attr('dataHp');
+                playerAttack =$(this).attr('dataAttack');
+                playerCounterAttack =$(this).attr('dataCounterAttack');
+                playerDefend =$(this).attr('dataDefend');
+
                 $('#yourPlayerLine').append($(this));
                 $(this).unbind();            
-                console.log('CP ' + currentPlayer);
                 $('#yourPlayerText').text('Your Player')
                 playerSelect = true;
 
             } else if(!opponentSelect){
+
+                opponentHp =$(this).attr('dataHp');
+                opponentAttack =$(this).attr('dataAttack');
+                opponentCounterAttack =$(this).attr('dataCounterAttack');
+                opponentDefend =$(this).attr('dataDefend');
+
                 $('#yourOpponentText').text('Your Opponent');
                 $('#yourOpponentLine').append($(this));
                 $('button').show();
@@ -93,17 +124,20 @@ $(document).ready(function(){
 
     
     $('#attackButton').click(function(){
-        console.log('attack')
+        console.log('Attack: ' + playerAttack)
+        console.log('counterAttack: ' + opponentCounterAttack)
+
         
 
     })
 
     $('#defendButton').click(function(){
-        console.log('defend')
+        console.log(opponentCounterAttack)
 
     })
     
 
+    
 
 
     
@@ -122,13 +156,6 @@ $(document).ready(function(){
 
 
 
-    function attack(x) {
-    return x;
-
-    };
-
-    function defend(x ){
-    return x;
-    };
+    
 
 });
