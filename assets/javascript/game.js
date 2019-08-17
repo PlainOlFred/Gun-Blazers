@@ -44,8 +44,8 @@ $(document).ready(function(){
 
     //create player card
     $('#instructionsText').text('Choose Your Player')
-    players.forEach(function(player){
-        let playerCard = $(`<div class="playerCard" id="playerCard${player.name}">
+    players.forEach(function(player){// var or let
+        var playerCards = $(`<div>
                                 <div class="playerCardName">
                                     ${player.name}
                                 </div> 
@@ -59,22 +59,22 @@ $(document).ready(function(){
                             );
 
         
-        $('#playerCard').addClass('playerCard')
-        $('#choosePlayerLine').append(playerCard)
-        playerCard.attr('dataObject', player) //might need to access Data
+        playerCards.addClass('playerCard')
+        playerCards.attr('dataObject', player) //might need to access Data
         
+        $('#choosePlayerLine').append(playerCards)
+        return playerCard = playerCards;
     });
+ 
 
     //click to choose player
-    $('.playerCard').click(function(){//check selected selector syntax
-            let playerList = players;
-            currentPlayer = 'playerCard.dataObject;'
-            console.log(playerList);
+    $('.playerCard').click(function(){
+            // currentPlayer = $(this).playerCard['dataObject'];
             $('#instructionsText').text('Choose Your Opponent')
             if(!playerSelect){
                 $('#yourPlayerLine').append($(this));
                 $(this).unbind();            
-                console.log('CP ' +currentPlayer);
+                console.log('CP ' + currentPlayer);
             
                 playerSelect = true;
 
