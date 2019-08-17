@@ -75,7 +75,7 @@ $(document).ready(function(){
                 $('#yourPlayerLine').append($(this));
                 $(this).unbind();            
                 console.log('CP ' + currentPlayer);
-            
+                $('#yourPlayerText').text('Your Player')
                 playerSelect = true;
 
             } else if(!opponentSelect){
