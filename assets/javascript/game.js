@@ -40,13 +40,15 @@ $(document).ready(function(){
     let playerHp = 1;
     let playerAttack = 0;
     let playerCounterAttack = 0;
-    let playerDefned = 0;
+    let playerDefend = 0;
 
     let opponentName = ' '
     let opponentHp = 1;
     let opponentAttack = 0;
     let opponentCounterAttack = 0;
     let opponentDefned = 0;
+
+    let inc = 2
 
     
 
@@ -124,9 +126,17 @@ $(document).ready(function(){
 
     
     $('#attackButton').click(function(){
-        console.log('Attack: ' + playerAttack)
-        console.log('counterAttack: ' + opponentCounterAttack)
+        //oppnent loses HP 
+        opponentHp -= playerAttack
+        $('#yourOpponentLine > .playerCard > .playerCardHp').text(opponentHp)
+        
+        //playerloose HP
+        playerHp -= opponentCounterAttack
+        $('#yourPlayerLine > .playerCard > .playerCardHp').text(playerHp)
+            //Defend Optional
+        //player gets stronger
 
+        
         
 
     })
