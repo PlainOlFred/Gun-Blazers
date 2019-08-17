@@ -114,6 +114,7 @@ $(document).ready(function(){
                 $('#yourOpponentText').text('Your Opponent');
                 $('#yourOpponentLine').append($(this));
                 $('button').show();
+                $('button').attr('active', 'active')
                 selected = true;
                 opponentSelect = true;
 
@@ -124,22 +125,30 @@ $(document).ready(function(){
 
 
 
-    
+    //do while choosePlayerLine is not empty
     $('#attackButton').click(function(){
-        //oppnent loses HP 
-        opponentHp -= playerAttack
+        opponentHp -= playerAttack //oppnent loses HP 
         $('#yourOpponentLine > .playerCard > .playerCardHp').text(opponentHp)
         
-        //playerloose HP
-        playerHp -= opponentCounterAttack
+        playerHp -= opponentCounterAttack //playerloose HP
         $('#yourPlayerLine > .playerCard > .playerCardHp').text(playerHp)
-            //Defend Optional
-        //player gets stronger
+        
+        playerAttack -= -2// player gets stronger += was concatenating
+
+        if(opponentHp <= 0 ){
+            $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
+            $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
+            $('#yourOpponentText').text('Choose Next Opponent');
+            $(this).attr('disabled','disabled')
+
+
+        }
+        
 
         
         
 
-    })
+    
 
     $('#defendButton').click(function(){
         console.log(opponentCounterAttack)
@@ -147,25 +156,8 @@ $(document).ready(function(){
     })
     
 
-    
-
 
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-});
+    });
+})
