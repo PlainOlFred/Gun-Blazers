@@ -100,7 +100,7 @@ $(document).ready(function(){
                 playerDefend =$(this).attr('dataDefend');
 
                 $('#yourPlayerLine').append($(this));
-                $(this).unbind();            
+                $(this).unbind();        
                 $('#yourPlayerText').text('Your Player')
                 playerSelect = true;
 
@@ -114,8 +114,7 @@ $(document).ready(function(){
                 $('#yourOpponentText').text('Your Opponent');
                 $('#yourOpponentLine').append($(this));
                 $('button').show();
-                $('button').attr('active', 'active')
-                selected = true;
+                $('button').prop('disabled', false)
                 opponentSelect = true;
 
             } 
@@ -139,9 +138,8 @@ $(document).ready(function(){
             $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
             $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
             $('#yourOpponentText').text('Choose Next Opponent');
-            $(this).attr('disabled','disabled')
-
-
+            opponentSelect = false;
+            $(this).prop('disabled',true)
         }
         
 
@@ -155,7 +153,7 @@ $(document).ready(function(){
 
     })
     
-
+    console.log('1st opp hp:' + opponentHp)
 
     
 
