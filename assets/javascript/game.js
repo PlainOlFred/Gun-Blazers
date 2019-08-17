@@ -28,6 +28,7 @@ $(document).ready(function(){
     let rouge = createPlayer('Rouge', 80, 5, 5, 20, '../images/animal-1.jpg')
 
     let players = [warrior, sorcerer, elf, wizard, rouge]
+    let playerCards = []
 
     //player select variable
     let playerSelect = false;
@@ -44,27 +45,25 @@ $(document).ready(function(){
 
     //create player card
     $('#instructionsText').text('Choose Your Player')
-    players.forEach(function(player){// var or let
-        var playerCards = $(`<div>
-                                <div class="playerCardName">
-                                    ${player.name}
-                                </div> 
-                                <div>
-                                    <img src=" ">
-                                </div>
-                                <div class="playerCardHp">
-                                    ${player.hp}
-                                </div>
-                            </div>`
-                            );
-
-        
-        playerCards.addClass('playerCard')
-        playerCards.attr('dataObject', player) //might need to access Data
-        
-        $('#choosePlayerLine').append(playerCards)
-        return playerCard = playerCards;
+    players.forEach(function(player){
+        let playerCard = $(`<div>
+            <div class="playerCardName">
+                ${player.name}
+            </div> 
+            <div>
+                <img src=" ">
+            </div>
+            <div class="playerCardHp">
+                ${player.hp}
+            </div>
+        </div>`
+        );
+        playerCard.addClass('playerCard')
+        playerCard.attr('dataObject', player) //might need to access Data
+        playerCards.push(playerCard)
     });
+
+    $('#choosePlayerLine').append(playerCards)
  
 
     //click to choose player
