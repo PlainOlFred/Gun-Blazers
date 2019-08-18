@@ -22,14 +22,14 @@ $(document).ready(function(){
 
     }
 
-    let warrior = createPlayer('Warrior', 10, 2, 1, 2, '../images/animal-1.jpg')
+    let warrior = createPlayer('Warrior', 10, 2, 1, 2, '../images/wizard.jpg')
     let sorcerer = createPlayer('Sorcerer', 12, 3, 2, 3, '../images/SB_pic.jpg')
     let elf = createPlayer('Elf', 50, 1, 1, 1, '../images/animal-1.jpg')
-    let wizard = createPlayer('Wizard', 8, 6, 3, 6, '../images/animal-1.jpg')
+    let wizard = createPlayer('Wizard', 8, 6, 3, 6, '../images/wizard.jpg')
     let rouge = createPlayer('Rouge', 12, 2, 7, 2, '../images/animal-1.jpg')
    
 
-    let players = [warrior, sorcerer, elf, wizard, rouge]
+    let players = [warrior, sorcerer, elf, , rouge, wizard]
     let playersCount= players.length;
     console.log(playersCount)
     let playerCards = []
@@ -70,14 +70,15 @@ $(document).ready(function(){
                 ${player.name}
             </div> 
             <div>
-                <img src=" ">
+                <img id="playerImage" src="${player.pic} ">
             </div>
-            <div class="palyerBio"></div>
+        
             <div class="playerCardHp">
                 ${player.hp}
             </div>
         </div>`
         );
+
         playerCard.addClass('playerCard')
         //need to access Data
         playerCard.attr('dataName', player.name)
@@ -85,7 +86,10 @@ $(document).ready(function(){
         playerCard.attr('dataAttack', player.attack)
         playerCard.attr('dataCounterAttack', player.counterAttack)
         playerCard.attr('dataDefend', player.defend)
+        
         playerCards.push(playerCard)
+
+       
     });
     //print cards 
    
