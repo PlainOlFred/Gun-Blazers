@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('hr').hide()
     
     //CreatePlayer factory
     const createPlayer = function(name, hp , attack, counterAttack, defend, pic){
@@ -21,14 +22,17 @@ $(document).ready(function(){
 
     }
 
-    let warrior = createPlayer('warrior', 200, 1, 1, 1, '../images/animal-1.jpg')
-    let sorcerer = createPlayer('sorcerer', 70, 10, 5, 10, '../images/SB_pic.jpg')
-    let elf = createPlayer('Elf', 500, 2, 5, 2, '../images/animal-1.jpg')
+    let warrior = createPlayer('Warrior', 200, 10, 8, 1, '../images/animal-1.jpg')
+    let sorcerer = createPlayer('Sorcerer', 100, 10, 5, 10, '../images/SB_pic.jpg')
+    let elf = createPlayer('Elf', 500, 5, 5, 2, '../images/animal-1.jpg')
     let wizard = createPlayer('Wizard', 100, 5, 5, 3, '../images/animal-1.jpg')
     let rouge = createPlayer('Rouge', 80, 5, 5, 20, '../images/animal-1.jpg')
+   
 
     let players = [warrior, sorcerer, elf, wizard, rouge]
     let playerCards = []
+
+    
 
     //player select variable
     let playerSelect = false;
@@ -48,22 +52,12 @@ $(document).ready(function(){
     let opponentCounterAttack = 0;
     let opponentDefned = 0;
 
-    let inc = 2
-
-    
-
-   
-
-    
-
-    
-
 
 
     //create player card
     $('#instructionsText').text('Choose Your Player')
     players.forEach(function(player){
-        let playerCard = $(`<div>
+        let playerCard = $(`<div id="playerId${player.name}">
             <div class="playerCardName">
                 ${player.name}
             </div> 
@@ -84,7 +78,10 @@ $(document).ready(function(){
         playerCards.push(playerCard)
     });
     //print cards 
+   
     $('#choosePlayerLine').append(playerCards)
+    // $('#choosPlayerLine:last-child').css({'border': })
+    
  
 
     //click to choose player
@@ -114,8 +111,11 @@ $(document).ready(function(){
                 $('#yourOpponentText').text('Your Opponent');
                 $('#yourOpponentLine').append($(this));
                 $('button').show();
+                $('button').css({'display': 'inline-block', 'clear': 'both'})
                 $('button').prop('disabled', false)
+                $('#firstBreak').show()
                 opponentSelect = true;
+                $(this).unbind(); 
 
             } 
         
@@ -124,7 +124,7 @@ $(document).ready(function(){
 
 
 
-    //do while choosePlayerLine is not empty
+    
     $('#attackButton').click(function(){
         opponentHp -= playerAttack //oppnent loses HP 
         $('#yourOpponentLine > .playerCard > .playerCardHp').text(opponentHp)
@@ -134,13 +134,26 @@ $(document).ready(function(){
         
         playerAttack -= -2// player gets stronger += was concatenating
 
-        if(opponentHp <= 0 ){
-            $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
-            $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
-            $('#yourOpponentText').text('Choose Next Opponent');
-            opponentSelect = false;
-            $(this).prop('disabled',true)
-        }
+        $('#yourPlayerLine').append($(`<div id="storyBoxText></div>"`))// story box text
+        
+            if(opponentHp <= 0 ){
+                $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
+                $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
+                $('#yourOpponentText').text('Choose Next Opponent');
+                $('#secondBreak').show()
+                $('#defeatOpponentText').text('Defeated Opponent');
+                opponentSelect = false;
+                $(this).prop('disabled',true)
+            }
+            if(playerHp <= 0){
+                $('#yourPlayerLine > .playerCard > .playerCardHp').text('0')
+                $(this).prop('disabled',true)
+
+
+
+            }
+            
+    })
         
 
         
@@ -158,4 +171,4 @@ $(document).ready(function(){
     
 
     });
-})
+

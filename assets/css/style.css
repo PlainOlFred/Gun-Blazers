@@ -8,6 +8,15 @@
     margin-right: 20px;
     margin-bottom: 20px;
 }
+/* story bix text*/
+#storyBoxText{
+    border: 2px solid grey;
+    left: right;
+    margin-right: 50px;
+    height: 100px;
+    width: 300px
+}
+
 
 hr{
     clear: both;
@@ -25,6 +34,7 @@ hr{
     
 }
 
+
 h4{
     clear: both;
     overflow: auto;
@@ -36,7 +46,9 @@ h4{
 
 /* style attack and Defend Butoon */
 button{
+    display: inline-block;
     display: none;
+    clear: both;
 }
 
 #attackButton{
