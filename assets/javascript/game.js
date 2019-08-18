@@ -12,14 +12,12 @@ $(document).ready(function(){
 
         return {
             name: n,
-            pic: p,
             hp: h,
             attack: a,
             counterAttack: c,
-            defend: d
-
+            defend: d,
+            pic: p
         }
-
     }
 
     let warrior = createPlayer('Warrior', 200, 2, 1, 2, 'assets/images/warrior.jpg')
@@ -31,36 +29,21 @@ $(document).ready(function(){
 
     let players = [warrior, sorcerer, elf, , rouge, wizard]
     let playersCount= players.length;
-    console.log(playersCount)
     let playerCards = []
 
-
-
-    
 
     //player select variable
     let playerSelect = false;
     let opponentSelect= false;
     
-
     //Action variables 
-    let playerName = ' '
     let playerHp = 1;
     let playerAttack = 0;
-    let playerCounterAttack = 0;
     let playerDefend = 0;
 
     let opponentName = ' '
     let opponentHp = 1;
-    let opponentAttack = 0;
     let opponentCounterAttack = 0;
-    let opponentDefned = 0;
-
-    
-    
-    
-
-
 
     //create player card
     $('#instructionsText').text('Choose Your Player')
@@ -80,6 +63,7 @@ $(document).ready(function(){
         );
 
         playerCard.addClass('playerCard')
+
         //need to access Data
         playerCard.attr('dataName', player.name)
         playerCard.attr('dataHp', player.hp) 
@@ -87,21 +71,14 @@ $(document).ready(function(){
         playerCard.attr('dataCounterAttack', player.counterAttack)
         playerCard.attr('dataDefend', player.defend)
         
-        playerCards.push(playerCard)
-
-       
+        playerCards.push(playerCard) 
     });
     //print cards 
-   
     $('#choosePlayerLine').append(playerCards)
     
-    
- 
 
     //click to choose player
     $('.playerCard').click(function(){
-           
-           
             $('#instructionsText').text('Choose Your Opponent')
             if(!playerSelect){
 
@@ -157,24 +134,32 @@ $(document).ready(function(){
         
         playerHp -= opponentCounterAttack //playerloose HP
         $('#yourPlayerLine > .playerCard > .playerCardHp').text(playerHp)
+        console.log(playersCount)
 
         
         playerAttack -= -playerDefend// player gets stronger by base attack (defend) += concatted
 
 
         
-            if(opponentHp <= 0){
+            if(opponentHp <= 0 && playersCount >=1){
                 
                     $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
                     $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
                     $('#yourOpponentText').text('Choose Next Opponent');
                     $('#secondBreak').show()
                     $('#defeatOpponentText').text('Defeated Opponent');
-                    $('#storyBoxTextTop').text('You Have Been Defeated')
+                    $('#storyBoxTextTop').text('You Have Defeated Your Oppenent')
                     $('#storyBoxTextBottom').text('Choose Another')
                     opponentSelect = false;
                     $(this).prop('disabled',true)
-                } 
+                } else if(opponentHp <= 0 && playersCount <1){
+                    $('#storyBoxTextTop').text('You Have Defeated all Opponents')
+                    $('#storyBoxTextBottom').text('Refresh Page to Play Again')
+                    console.log(playersCount)
+                   
+                    
+            
+                }
 
             if(playerHp <= 0){
                 $('#yourPlayerLine > .playerCard > .playerCardHp').text('0')
@@ -184,31 +169,9 @@ $(document).ready(function(){
                 
             }
 
-            if(opponentHp <= 0 && playersCount === 0){
-                $('#storyBoxTextTop').text('You Have Defeated all Opponents')
-                $('#storyBoxTextBottom').text('Refresh Page to Play again')
-                console.log(playersCount)
-               
-                
-        
-            }
+            
             
     })
         
-
-        
-        
-
-    
-
-    $('#defendButton').click(function(){
-        console.log(opponentCounterAttack)
-
-    })
-    
-    console.log(storyBox)
-
-    
-
 });
 
