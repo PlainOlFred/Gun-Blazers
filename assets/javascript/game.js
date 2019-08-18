@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     let warrior = createPlayer('Warrior', 200, 2, 1, 2, 'assets/images/warrior.jpg')
     let sorcerer = createPlayer('Sorcerer', 120, 3, 2, 3, 'assets/images/sorcerer.jpg')
-    let elf = createPlayer('Elf', 50, 1, 1, 1, 'assets/images/elf.jpg')
+    let elf = createPlayer('Elf', 100, 1, 1, 1, 'assets/images/elf.jpg')
     let wizard = createPlayer('Wizard', 80, 6, 3, 6, 'assets/images/wizard.jpg')
     let rouge = createPlayer('Rouge', 180, 2, 7, 2, 'assets/images/rouge2.jpg')
    
@@ -170,6 +170,8 @@ $(document).ready(function(){
                     $('#yourOpponentText').text('Choose Next Opponent');
                     $('#secondBreak').show()
                     $('#defeatOpponentText').text('Defeated Opponent');
+                    $('#storyBoxTextTop').text('You Have Been Defeated')
+                    $('#storyBoxTextBottom').text('Choose Another')
                     opponentSelect = false;
                     $(this).prop('disabled',true)
                 } 
@@ -177,7 +179,7 @@ $(document).ready(function(){
             if(playerHp <= 0){
                 $('#yourPlayerLine > .playerCard > .playerCardHp').text('0')
                 $(this).prop('disabled',true)
-                $('#storyBoxTextTop').text('You Have  Been Defeated')
+                $('#storyBoxTextTop').text('You Have Been Defeated')
                 $('#storyBoxTextBottom').text('Refresh Page to try agian')
                 
             }
