@@ -22,15 +22,17 @@ $(document).ready(function(){
 
     }
 
-    let warrior = createPlayer('Warrior', 200, 10, 8, 1, '../images/animal-1.jpg')
-    let sorcerer = createPlayer('Sorcerer', 100, 10, 5, 10, '../images/SB_pic.jpg')
-    let elf = createPlayer('Elf', 500, 5, 5, 2, '../images/animal-1.jpg')
-    let wizard = createPlayer('Wizard', 100, 5, 5, 3, '../images/animal-1.jpg')
-    let rouge = createPlayer('Rouge', 80, 5, 5, 20, '../images/animal-1.jpg')
+    let warrior = createPlayer('Warrior', 200, 3, 1, 3, '../images/animal-1.jpg')
+    let sorcerer = createPlayer('Sorcerer', 120, 3, 2, 3, '../images/SB_pic.jpg')
+    let elf = createPlayer('Elf', 500, 1, 1, 1, '../images/animal-1.jpg')
+    let wizard = createPlayer('Wizard', 60, 6, 3, 6, '../images/animal-1.jpg')
+    let rouge = createPlayer('Rouge', 120, 2, 7, 2, '../images/animal-1.jpg')
    
 
     let players = [warrior, sorcerer, elf, wizard, rouge]
     let playerCards = []
+
+
 
     
 
@@ -136,7 +138,7 @@ $(document).ready(function(){
     $('#attackButton').click(function(){
         //storyBoxText before crementation
         $('#storyBoxTextTop').text('You attacked ' + opponentName + ' for ' + playerAttack + ' damage.') 
-        $('#storyBoxTextBottom').text(opponentName + ' counter attacks for' + opponentCounterAttack + ' damage.')
+        $('#storyBoxTextBottom').text(opponentName + ' counter attacks for ' + opponentCounterAttack + ' damage.')
         opponentHp -= playerAttack //oppnent loses HP 
         $('#yourOpponentLine > .playerCard > .playerCardHp').text(opponentHp)
         
@@ -144,7 +146,7 @@ $(document).ready(function(){
         $('#yourPlayerLine > .playerCard > .playerCardHp').text(playerHp)
 
         
-        playerAttack -= -2// player gets stronger += was concatenating
+        playerAttack += playerDefend// player gets stronger by base attack (defend)
 
 
         
