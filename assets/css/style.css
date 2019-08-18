@@ -9,14 +9,23 @@
     margin-bottom: 20px;
 }
 /* story bix text*/
-#storyBoxText{
+#storyBox{
     border: 2px solid grey;
-    left: right;
+    float: right;
     margin-right: 50px;
     height: 100px;
-    width: 300px
+    width: 300px;
+    display: none;
+    padding: 20px;
+    margin-bottom: 4px;
 }
-
+#storyBoxTextTop{
+    text-align: center;
+    
+}
+#storyBoxTextBottom{
+    text-align: center;
+}
 
 hr{
     clear: both;

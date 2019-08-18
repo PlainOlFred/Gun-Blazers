@@ -52,6 +52,10 @@ $(document).ready(function(){
     let opponentCounterAttack = 0;
     let opponentDefned = 0;
 
+    
+    
+    
+
 
 
     //create player card
@@ -64,6 +68,7 @@ $(document).ready(function(){
             <div>
                 <img src=" ">
             </div>
+            <div class="palyerBio"></div>
             <div class="playerCardHp">
                 ${player.hp}
             </div>
@@ -71,6 +76,7 @@ $(document).ready(function(){
         );
         playerCard.addClass('playerCard')
         //need to access Data
+        playerCard.attr('dataName', player.name)
         playerCard.attr('dataHp', player.hp) 
         playerCard.attr('dataAttack', player.attack)
         playerCard.attr('dataCounterAttack', player.counterAttack)
@@ -80,7 +86,7 @@ $(document).ready(function(){
     //print cards 
    
     $('#choosePlayerLine').append(playerCards)
-    // $('#choosPlayerLine:last-child').css({'border': })
+    
     
  
 
@@ -95,22 +101,24 @@ $(document).ready(function(){
                 playerAttack =$(this).attr('dataAttack');
                 playerCounterAttack =$(this).attr('dataCounterAttack');
                 playerDefend =$(this).attr('dataDefend');
-
-                $('#yourPlayerLine').append($(this));
+                
+                $('#yourPlayerLine').prepend($(this));
                 $(this).unbind();        
                 $('#yourPlayerText').text('Your Player')
                 playerSelect = true;
 
             } else if(!opponentSelect){
 
+                opponentName = $(this).attr('dataName');
                 opponentHp =$(this).attr('dataHp');
                 opponentAttack =$(this).attr('dataAttack');
                 opponentCounterAttack =$(this).attr('dataCounterAttack');
                 opponentDefend =$(this).attr('dataDefend');
 
                 $('#yourOpponentText').text('Your Opponent');
-                $('#yourOpponentLine').append($(this));
+                $('#storyBox').show();
                 $('button').show();
+                $('#yourOpponentLine').append($(this));
                 $('button').css({'display': 'inline-block', 'clear': 'both'})
                 $('button').prop('disabled', false)
                 $('#firstBreak').show()
@@ -126,15 +134,20 @@ $(document).ready(function(){
 
     
     $('#attackButton').click(function(){
+        //storyBoxText before crementation
+        $('#storyBoxTextTop').text('You attacked ' + opponentName + ' for ' + playerAttack + ' damage.') 
+        $('#storyBoxTextBottom').text(opponentName + ' counter attacks for' + opponentCounterAttack + ' damage.')
         opponentHp -= playerAttack //oppnent loses HP 
         $('#yourOpponentLine > .playerCard > .playerCardHp').text(opponentHp)
         
         playerHp -= opponentCounterAttack //playerloose HP
         $('#yourPlayerLine > .playerCard > .playerCardHp').text(playerHp)
+
         
         playerAttack -= -2// player gets stronger += was concatenating
 
-        $('#yourPlayerLine').append($(`<div id="storyBoxText></div>"`))// story box text
+
+        
         
             if(opponentHp <= 0 ){
                 $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
@@ -166,9 +179,9 @@ $(document).ready(function(){
 
     })
     
-    console.log('1st opp hp:' + opponentHp)
+    console.log(storyBox)
 
     
 
-    });
+});
 
