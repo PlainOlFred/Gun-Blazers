@@ -1,3 +1,7 @@
+#choosePlayerLine{
+    height: 100px;
+}
+
 /* PlayerCard */
 
 .playerCard{
@@ -7,6 +11,11 @@
     float: left;
     margin-right: 20px;
     margin-bottom: 20px;
+}
+
+#defeatOpponentLine > .playerCard > .playerCardName{
+    color: red
+
 }
 /* story bix text*/
 #storyBox{
@@ -62,6 +71,7 @@ button{
 }
 
 #attackButton{
+    margin-top: 20px;
     
 }
 #attackText{

@@ -178,9 +178,10 @@ $(document).ready(function(){
                 
             }
 
-            if($(opponentHp <= 0 && playersCount === 0)){
+            if(opponentHp <= 0 && playersCount === 0){
                 $('#storyBoxTextTop').text('You Have Defeated all Opponents')
-                $('#storyBoxTextBottom').text('Refresh Page to try again')
+                $('#storyBoxTextBottom').text('Refresh Page to Play again')
+                console.log(playersCount)
                
                 
         
