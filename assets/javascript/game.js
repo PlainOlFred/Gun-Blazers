@@ -146,7 +146,7 @@ $(document).ready(function(){
         $('#yourPlayerLine > .playerCard > .playerCardHp').text(playerHp)
 
         
-        playerAttack += playerDefend// player gets stronger by base attack (defend)
+        playerAttack -= -playerDefend// player gets stronger by base attack (defend) += concatted
 
 
         
