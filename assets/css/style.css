@@ -27,6 +27,7 @@
     text-align: center;
 }
 
+
 hr{
     clear: both;
 }
@@ -72,17 +73,8 @@ button{
     color: white;
     
 }
-#defendButton{
 
-}
-#defendText{
-    color: green;
-}
-#defendButton:active{
-    background-color: green;
-    outline: 2px solid green;
-    color: white;
-}
+
 
 
 

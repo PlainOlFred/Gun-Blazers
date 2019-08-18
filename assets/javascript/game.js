@@ -22,14 +22,16 @@ $(document).ready(function(){
 
     }
 
-    let warrior = createPlayer('Warrior', 200, 3, 1, 3, '../images/animal-1.jpg')
-    let sorcerer = createPlayer('Sorcerer', 120, 3, 2, 3, '../images/SB_pic.jpg')
-    let elf = createPlayer('Elf', 500, 1, 1, 1, '../images/animal-1.jpg')
-    let wizard = createPlayer('Wizard', 60, 6, 3, 6, '../images/animal-1.jpg')
-    let rouge = createPlayer('Rouge', 120, 2, 7, 2, '../images/animal-1.jpg')
+    let warrior = createPlayer('Warrior', 10, 2, 1, 2, '../images/animal-1.jpg')
+    let sorcerer = createPlayer('Sorcerer', 12, 3, 2, 3, '../images/SB_pic.jpg')
+    let elf = createPlayer('Elf', 50, 1, 1, 1, '../images/animal-1.jpg')
+    let wizard = createPlayer('Wizard', 8, 6, 3, 6, '../images/animal-1.jpg')
+    let rouge = createPlayer('Rouge', 12, 2, 7, 2, '../images/animal-1.jpg')
    
 
     let players = [warrior, sorcerer, elf, wizard, rouge]
+    let playersCount= players.length;
+    console.log(playersCount)
     let playerCards = []
 
 
@@ -105,9 +107,13 @@ $(document).ready(function(){
                 playerDefend =$(this).attr('dataDefend');
                 
                 $('#yourPlayerLine').prepend($(this));
-                $(this).unbind();        
+                playersCount --;
+                console.log(playersCount)
+                $(this).unbind();  
+
                 $('#yourPlayerText').text('Your Player')
                 playerSelect = true;
+                
 
             } else if(!opponentSelect){
 
@@ -121,6 +127,9 @@ $(document).ready(function(){
                 $('#storyBox').show();
                 $('button').show();
                 $('#yourOpponentLine').append($(this));
+                playersCount --;
+                console.log(playersCount)
+
                 $('button').css({'display': 'inline-block', 'clear': 'both'})
                 $('button').prop('disabled', false)
                 $('#firstBreak').show()
@@ -150,22 +159,31 @@ $(document).ready(function(){
 
 
         
-        
-            if(opponentHp <= 0 ){
-                $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
-                $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
-                $('#yourOpponentText').text('Choose Next Opponent');
-                $('#secondBreak').show()
-                $('#defeatOpponentText').text('Defeated Opponent');
-                opponentSelect = false;
-                $(this).prop('disabled',true)
-            }
+            if(opponentHp <= 0){
+                
+                    $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
+                    $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
+                    $('#yourOpponentText').text('Choose Next Opponent');
+                    $('#secondBreak').show()
+                    $('#defeatOpponentText').text('Defeated Opponent');
+                    opponentSelect = false;
+                    $(this).prop('disabled',true)
+                } 
+
             if(playerHp <= 0){
                 $('#yourPlayerLine > .playerCard > .playerCardHp').text('0')
                 $(this).prop('disabled',true)
+                $('#storyBoxTextTop').text('You Have  Been Defeated')
+                $('#storyBoxTextBottom').text('Refresh Page to try agian')
+                
+            }
 
-
-
+            if($(opponentHp <= 0 && playersCount === 0)){
+                $('#storyBoxTextTop').text('You Have Defeated all Opponents')
+                $('#storyBoxTextBottom').text('Refresh Page to try again')
+               
+                
+        
             }
             
     })
