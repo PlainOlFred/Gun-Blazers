@@ -1,23 +1,28 @@
-#choosePlayerLine{
-    height: 100px;
-}
+/* #choosePlayerLine{
+    height: auto;
+} */
 
 /* PlayerCard */
 
 .playerCard{
     border: 2px solid grey;
-    height: 120px;
+    height: auto;
     width: 100px;
     float: left;
     margin-right: 20px;
     margin-bottom: 20px;
+    padding: 0 0;
+}
+.card-body{
+    padding: 0 0;
+
 }
 
-.playerImage{
+/* .playerImage{
     position: relative;
     bottom: 40px;
     z-index: -5;;
-}
+} */
 
 
 #defeatOpponentLine > .playerCard > .playerCardName{
@@ -29,7 +34,7 @@
     border: 2px solid grey;
     float: right;
     margin-right: 50px;
-    height: 100px;
+    height: 150px;
     width: 300px;
     display: none;
     padding: 20px;
