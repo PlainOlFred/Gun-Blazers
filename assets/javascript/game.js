@@ -54,20 +54,21 @@ $(document).ready(function(){
     let playerCards = [];
 
     players.forEach(function(player){
-        let  playerCard = $(
-        `<div id="playerId${player.name}">
-            <div class="playerCardName">
-                ${player.name}
-            </div> 
-            <div>
-                <img class="playerImage" src="${player.pic}">
-            </div>
-        
-            <div class="playerCardHp">
-                ${player.hp}
+        let  playerCard = $(     
+        `<div class="card" id="playerId${player.name} style="width: 18rem;">
+            <img class="card-img-top playerImage" src="${player.pic}">
+            <div class="card-body">
+                <h5 class="card-title">
+                    ${player.name}
+                </h5>
+                <p class="card-text">
+                    ${player.hp}
+                </p>
             </div>
         </div>`
         );
+
+
 
         //Player Card Data
         playerCard.attr({
@@ -80,7 +81,7 @@ $(document).ready(function(){
         })
        
         
-        playerCards.push(playerCard) 
+        return playerCards.push(playerCard) 
     });
 
     
@@ -152,12 +153,17 @@ $(document).ready(function(){
         //storyBoxText before crementation
         $('#storyBoxTextTop').text('You attacked ' + opponentName + ' for ' + playerAttack + ' damage.') 
         $('#storyBoxTextBottom').text(opponentName + ' counter attacks for ' + opponentCounterAttack + ' damage.')
-        opponentHp -= playerAttack //oppnent loses HP 
-        $('#yourOpponentLine > .playerCard > .playerCardHp').text(opponentHp)
         
-        playerHp -= opponentCounterAttack //playerloose HP
-        $('#yourPlayerLine > .playerCard > .playerCardHp').text(playerHp)
-        console.log(playersCount)
+        //oppnent loses HP
+        opponentHp -= playerAttack  
+        $('#yourOpponentLine > .card > .card-body> .playerText').text('opponentHp')
+        console.log(opponentHp)
+        
+        //playerloose HP
+        playerHp -= opponentCounterAttack 
+        $('#yourPlayerLine > .PlayerCard > .card-body > .playerCardHp').text(playerHp)
+        console.log(playerHp)
+        
 
         
         playerAttack -= -playerDefend// player gets stronger by base attack (defend) += concatted
