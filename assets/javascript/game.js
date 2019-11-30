@@ -25,7 +25,7 @@ $(document).ready(function(){
         warrior = createPlayer('Warrior', 200, 2, 1, 2, 'assets/images/warrior.jpg'),
         sorcerer = createPlayer('Sorcerer', 120, 3, 2, 3, 'assets/images/sorcerer.jpg'),
         elf = createPlayer('Elf', 100, 1, 1, 1, 'assets/images/elf.jpg'),
-        wizard = createPlayer('Wizard', 80, 6, 3, 6, 'assets/images/wizard.jpg'),
+        wizard = createPlayer('Wizard', 80, 6, 3, 6, 'assets/images/sorcerer.jpg'),
         rouge = createPlayer('Rouge', 180, 2, 7, 2, 'assets/images/rouge2.jpg')
     
 
