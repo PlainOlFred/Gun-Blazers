@@ -169,32 +169,28 @@ $(document).ready(function(){
         
 
         
-        playerAttack -= -playerDefend// player gets stronger by base attack (defend) += concatted
+        playerAttack -= -playerDefend// player gets stronger by base attack (defend) += 
 
-
-        
-            if(opponentHp <= 0 && playersCount >=1){
+            if(opponentHp <= 0 && playersCount >=0){
                 
-                    $('#yourOpponentLine > .playerCard > .playerCardHp').text('0')
+                    $('#yourOpponentLine > .playerCard > .card-body > .card-text').text('0')
                     $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
                     $('#yourOpponentText').text('Choose Next Opponent');
-                    $('#secondBreak').show()
+                   
                     $('#defeatOpponentText').text('Defeated Opponent');
                     $('#storyBoxTextTop').text('You Have Defeated Your Oppenent')
                     $('#storyBoxTextBottom').text('Choose Another')
                     opponentSelect = false;
                     $(this).prop('disabled',true)
-                } else if(opponentHp <= 0 && playersCount <1){
+                } else if(opponentHp <= 0 && playersCount < 1){
                     $('#storyBoxTextTop').text('You Have Defeated all Opponents')
                     $('#storyBoxTextBottom').text('Refresh Page to Play Again')
-                    console.log(playersCount)
-                   
-                    
+                      
             
                 }
 
             if(playerHp <= 0){
-                $('#yourPlayerLine > .playerCard > .playerCardHp').text('0')
+                $('#yourPlayerLine > .playerCard > .card-body > .card-text').text('0')
                 $(this).prop('disabled',true)
                 $('#storyBoxTextTop').text('You Have Been Defeated')
                 $('#storyBoxTextBottom').text('Refresh Page to try agian')
