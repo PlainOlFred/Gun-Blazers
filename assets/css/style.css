@@ -53,21 +53,17 @@ hr{
     clear: both;
 }
 
-.playerCardName{
+.card-title{
     font-size: 18pt;
     text-align: center;
     padding-top: 10px ;
     
 }
 
-.playerCardHp{
+.card-text{
     color: blue;
     text-align: center;
-    position: relative;
-    bottom: 70px;
-    font-size: 20pt;
-    
-    
+    font-size: 16pt;
 }
 
 
