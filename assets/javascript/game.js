@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('hr').hide()
+    $('#storyBoxBtn').hide();
     
     //CreatePlayer factory
     const createPlayer = function(name, hp , attack, counterAttack, defend, pic){
@@ -126,7 +126,7 @@ $(document).ready(function(){
 
                 //Show Story Box
                 $('#storyBox').show();
-                $('button').show();
+                
                 
                 playersCount --;
 
@@ -135,12 +135,9 @@ $(document).ready(function(){
                 opponentSelect = true;
                 
 
-                $('button').css({'display': 'inline-block', 'clear': 'both'})
-                $('button').prop('disabled', false)
-                $('#firstBreak').show()
-
-                
-                
+                $('#attackButton')
+                    .css({'display': 'inline-block', 'clear': 'both'})
+                    .prop('disabled', false)  
 
             } 
         
@@ -150,8 +147,9 @@ $(document).ready(function(){
 
 
     
-    $('#attackButton').click(function(){
-        //storyBoxText before crementation
+    $('#attackButton').on('click', function(){
+
+        //storyBoxText 
         $('#storyBoxTextTop').text('You attacked ' + opponentName + ' for ' + playerAttack + ' damage.') 
         $('#storyBoxTextBottom').text(opponentName + ' counter attacks for ' + opponentCounterAttack + ' damage.')
         
@@ -162,43 +160,59 @@ $(document).ready(function(){
         console.log($('#yourOpponentLine')[0])
         console.log(opponentHp)
         
-        //playerloose HP
+        //player loses HP
         playerHp -= opponentCounterAttack 
         $('#yourPlayerLine > .playerCard > .card-body > .card-text').text(playerHp)
         console.log(playerHp)
         
+        // player gets stronger by base attack (defend) 
+        playerAttack -= -playerDefend 
 
-        
-        playerAttack -= -playerDefend// player gets stronger by base attack (defend) += 
-
-            if(opponentHp <= 0 && playersCount >=0){
-                
-                    $('#yourOpponentLine > .playerCard > .card-body > .card-text').text('0')
-                    $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'))
+            if(opponentHp <= 0 && playersCount >0){
+                    $('#yourOpponentLine > .playerCard > .card-body > .card-text').text('0');
+                    $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'));
+                    
                     $('#yourOpponentText').text('Choose Next Opponent');
-                   
                     $('#defeatOpponentText').text('Defeated Opponent');
-                    $('#storyBoxTextTop').text('You Have Defeated Your Oppenent')
-                    $('#storyBoxTextBottom').text('Choose Another')
-                    opponentSelect = false;
+                    $('#storyBoxTextTop').text('You Have Defeated Your Oppenent');
+                    $('#storyBoxTextBottom').text('Choose Another');
+                    
                     $(this).prop('disabled',true)
-                } else if(opponentHp <= 0 && playersCount < 1){
-                    $('#storyBoxTextTop').text('You Have Defeated all Opponents')
-                    $('#storyBoxTextBottom').text('Refresh Page to Play Again')
-                      
-            
-                }
+
+                    opponentSelect = false;
+
+            } else if(opponentHp <= 0 && playersCount === 0){
+                $('#yourOpponentLine > .playerCard > .card-body > .card-text').text('0');
+                $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'));
+
+                $('#storyBoxTextTop').text('You Have Defeated all Opponents');
+                $('#storyBoxTextBottom').text('Play Again?');
+
+
+                $('#attackButton').hide();
+
+                //show reload button
+                $('#storyBoxBtn').show();
+
+            }
 
             if(playerHp <= 0){
                 $('#yourPlayerLine > .playerCard > .card-body > .card-text').text('0')
                 $(this).prop('disabled',true)
                 $('#storyBoxTextTop').text('You Have Been Defeated')
-                $('#storyBoxTextBottom').text('Refresh Page to try agian')
+                $('#storyBoxTextBottom').text('Play Again?')
+
+                //show reload button
+                $('#storyBoxBtn').show();
                 
             }
 
             
             
+    })
+
+    $('#storyBoxBtn').on('click',function() {
+        location.reload();
     })
         
 });
