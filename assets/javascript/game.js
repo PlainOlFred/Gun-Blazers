@@ -56,7 +56,7 @@ $(document).ready(function(){
     players.forEach(function(player){
         let  playerCard = $(     
         `<div class="card" id="playerId${player.name} style="width: 18rem;">
-            <img class="card-img-top playerImage" src="${player.pic}">
+            <img class="card-img-top playerImage" src="${player.pic}" alt"${player.name}">
             <div class="card-body">
                 <h5 class="card-title">
                     ${player.name}
@@ -64,6 +64,7 @@ $(document).ready(function(){
                 <p class="card-text">
                     ${player.hp}
                 </p>
+                
             </div>
         </div>`
         );
@@ -156,12 +157,14 @@ $(document).ready(function(){
         
         //oppnent loses HP
         opponentHp -= playerAttack  
-        $('#yourOpponentLine > .card > .card-body> .playerText').text('opponentHp')
+        $('#yourOpponentLine > .playerCard > .card-body> .card-text').text(opponentHp)
+        console.log($('#yourOpponentLine'))
+        console.log($('#yourOpponentLine')[0])
         console.log(opponentHp)
         
         //playerloose HP
         playerHp -= opponentCounterAttack 
-        $('#yourPlayerLine > .PlayerCard > .card-body > .playerCardHp').text(playerHp)
+        $('#yourPlayerLine > .playerCard > .card-body > .card-text').text(playerHp)
         console.log(playerHp)
         
 
