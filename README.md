@@ -1,4 +1,5 @@
-# unit-4-game
-Gun Blazers
+# Gun Blazers
+
+> RPG Game based in the Futuristic West
 
 RPG Game based in the Futuristic West
