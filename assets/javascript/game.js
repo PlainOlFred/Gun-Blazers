@@ -1,219 +1,179 @@
-$(document).ready(function(){
-    $('#storyBoxBtn').hide();
-    
-    //CreatePlayer factory
-    const createPlayer = function(name, hp , attack, counterAttack, defend, pic){
-        let n = name;
-        let h = hp;
-        let a = attack;
-        let c = counterAttack;
-        let d = defend;
-        let p = pic;
+$(document).ready(function () {
+  $("#storyBoxBtn").hide();
+   /**
+   * Main Menu Controls
+   *
+   */
 
-        return {
-            name: n,
-            hp: h,
-            attack: a,
-            counterAttack: c,
-            defend: d,
-            pic: p
-        }
+
+  /**
+   * Player select Controls
+   *
+   */
+  let currentPlayerIndex = 0;
+  function handleNextPlayerClick() {
+    console.log("next");
+    if (currentPlayerIndex == playersCount - 1) {
+      currentPlayerIndex = 0;
+    } else {
+      currentPlayerIndex++;
     }
 
-    // Create Players
-    let 
-        warrior = createPlayer('Warrior', 200, 2, 1, 2, 'assets/images/warrior.jpg'),
-        sorcerer = createPlayer('Sorcerer', 120, 3, 2, 3, 'assets/images/sorcerer.jpg'),
-        elf = createPlayer('Elf', 100, 1, 1, 1, 'assets/images/elf.jpg'),
-        wizard = createPlayer('Wizard', 80, 6, 3, 6, 'assets/images/sorcerer.jpg'),
-        rouge = createPlayer('Rouge', 180, 2, 7, 2, 'assets/images/rouge2.jpg')
-    
+    renderPalyerData(players[currentPlayerIndex]);
+  }
+  function handlePrevPlayerClick() {
+    if (currentPlayerIndex == 0) {
+      currentPlayerIndex = playersCount - 1;
+    } else {
+      currentPlayerIndex--;
+    }
 
-    let players = [warrior, sorcerer, elf, rouge, wizard];
+    renderPalyerData(players[currentPlayerIndex]);
+  }
 
-    let playersCount= players.length;
-    
+  function renderPalyerData(player) {
+    $("#player-select-card").attr("src", player.pic);
+    $("#select-player-name").text(player.name);
+    $("#select-player-class").text(player.playerClass);
+    $("#select-player-hp").text(player.hp);
+    $("#select-player-ap").text(player.attack);
+    $("#select-player-defense").text(player.defense);
+  }
 
+  $("#prev-player-select-button").on("click", handlePrevPlayerClick);
+  $("#next-player-select-button").on("click", handleNextPlayerClick);
 
-    //player select variable
-    let 
-        playerSelect 
-        opponentSelect= false;
-    
-    //Action variables 
-    let 
-        playerHp = 1;
-        playerAttack = 0,
-        playerDefend = 0,
-        opponentName = ' '
-        opponentHp = 1;
-        opponentCounterAttack = 0;
+  renderPalyerData(players[currentPlayerIndex]);
 
-    //create player card
-    $('#instructionsText').text('Choose Your Player');
-    let playerCards = [];
+   /**
+     * Game
+     *
+   */
 
-    players.forEach(function(player){
-        let  playerCard = $(     
-        `<div class="card" id="playerId${player.name} style="width: 18rem;">
-            <img class="card-img-top playerImage" src="${player.pic}" alt"${player.name}">
-            <div class="card-body">
-                <h5 class="card-title">
-                    ${player.name}
-                </h5>
-                <p class="card-text">
-                    ${player.hp}
-                </p>
-                
-            </div>
-        </div>`
-        );
+  //player select variable
+  let playerSelect;
+  opponentSelect = false;
 
+  //Action variables
+  let playerHp = 1;
+  (playerAttack = 0), (playerDefend = 0), (opponentName = " ");
+  opponentHp = 1;
+  opponentCounterAttack = 0;
 
+  //create player card
+  $("#instructionsText").text("Choose Your Player");
+  let playerCards = [];
 
-        //Player Card Data
-        playerCard.attr({
-            'class': 'playerCard',
-            'dataName': player.name,
-            'dataHp': player.hp,
-            'dataAttack': player.attack,
-            'dataCounterAttack': player.counterAttack,
-            'dataDefend': player.defend
-        })
-       
-        
-        return playerCards.push(playerCard) 
-    });
+  //print cards
 
-    
-    //print cards 
-    $('#choosePlayerLine').append(playerCards)
-    
+  //click to choose player
+  $("#choosePlayerLine").on("click", ".playerCard", function () {
+    $("#instructionsText").text("Choose Your Opponent");
+    if (!playerSelect) {
+      playerHp = $(this).attr("dataHp");
+      playerAttack = $(this).attr("dataAttack");
+      playerCounterAttack = $(this).attr("dataCounterAttack");
+      playerDefend = $(this).attr("dataDefend");
 
+      $("#yourPlayerText").text("Your Player");
+      $("#yourPlayerLine").append($(this));
 
+      playersCount--;
 
+      $(this).unbind();
 
-    //click to choose player
-    $('#choosePlayerLine').on('click', '.playerCard', function() {
-            $('#instructionsText').text('Choose Your Opponent')
-            if(!playerSelect){
+      playerSelect = true;
+    } else if (!opponentSelect) {
+      opponentName = $(this).attr("dataName");
+      opponentHp = $(this).attr("dataHp");
+      opponentAttack = $(this).attr("dataAttack");
+      opponentCounterAttack = $(this).attr("dataCounterAttack");
+      opponentDefend = $(this).attr("dataDefend");
 
-                playerHp =$(this).attr('dataHp');
-                playerAttack =$(this).attr('dataAttack');
-                playerCounterAttack =$(this).attr('dataCounterAttack');
-                playerDefend =$(this).attr('dataDefend');
+      $("#yourOpponentText").text("Your Opponent");
+      $("#yourOpponentLine").append($(this));
 
-                $('#yourPlayerText').text('Your Player');
-                $('#yourPlayerLine').append($(this));
+      //Show Story Box
+      $("#storyBox").show();
 
-                playersCount --;
-               
-                $(this).unbind();  
+      playersCount--;
 
-                playerSelect = true;
-                
+      $(this).unbind();
 
-            } else if(!opponentSelect){
+      opponentSelect = true;
 
-                opponentName = $(this).attr('dataName');
-                opponentHp =$(this).attr('dataHp');
-                opponentAttack =$(this).attr('dataAttack');
-                opponentCounterAttack =$(this).attr('dataCounterAttack');
-                opponentDefend =$(this).attr('dataDefend');
+      $("#attackButton")
+        .css({ display: "inline-block", clear: "both" })
+        .prop("disabled", false);
+    }
+  });
 
-                $('#yourOpponentText').text('Your Opponent');
-                $('#yourOpponentLine').append($(this));
+  $("#attackButton").on("click", function () {
+    //storyBoxText
+    $("#storyBoxTextTop").text(
+      "You attacked " + opponentName + " for " + playerAttack + " damage."
+    );
+    $("#storyBoxTextBottom").text(
+      opponentName +
+        " counter attacks for " +
+        opponentCounterAttack +
+        " damage."
+    );
 
-                //Show Story Box
-                $('#storyBox').show();
-                
-                
-                playersCount --;
+    //oppnent loses HP
+    opponentHp -= playerAttack;
+    $("#yourOpponentLine > .playerCard > .card-body> .card-text").text(
+      opponentHp
+    );
+    console.log($("#yourOpponentLine"));
+    console.log($("#yourOpponentLine")[0]);
+    console.log(opponentHp);
 
-                $(this).unbind(); 
+    //player loses HP
+    playerHp -= opponentCounterAttack;
+    $("#yourPlayerLine > .playerCard > .card-body > .card-text").text(playerHp);
+    console.log(playerHp);
 
-                opponentSelect = true;
-                
+    // player gets stronger by base attack (defend)
+    playerAttack -= -playerDefend;
 
-                $('#attackButton')
-                    .css({'display': 'inline-block', 'clear': 'both'})
-                    .prop('disabled', false)  
+    if (opponentHp <= 0 && playersCount > 0) {
+      $("#yourOpponentLine > .playerCard > .card-body > .card-text").text("0");
+      $("#defeatOpponentLine").append($("#yourOpponentLine > .playerCard"));
 
-            } 
-        
-            })
-        
+      $("#yourOpponentText").text("Choose Next Opponent");
+      $("#defeatOpponentText").text("Defeated Opponent");
+      $("#storyBoxTextTop").text("You Have Defeated Your Oppenent");
+      $("#storyBoxTextBottom").text("Choose Another");
 
+      $(this).prop("disabled", true);
 
+      opponentSelect = false;
+    } else if (opponentHp <= 0 && playersCount === 0) {
+      $("#yourOpponentLine > .playerCard > .card-body > .card-text").text("0");
+      $("#defeatOpponentLine").append($("#yourOpponentLine > .playerCard"));
 
-    
-    $('#attackButton').on('click', function(){
+      $("#storyBoxTextTop").text("You Have Defeated all Opponents");
+      $("#storyBoxTextBottom").text("Play Again?");
 
-        //storyBoxText 
-        $('#storyBoxTextTop').text('You attacked ' + opponentName + ' for ' + playerAttack + ' damage.') 
-        $('#storyBoxTextBottom').text(opponentName + ' counter attacks for ' + opponentCounterAttack + ' damage.')
-        
-        //oppnent loses HP
-        opponentHp -= playerAttack  
-        $('#yourOpponentLine > .playerCard > .card-body> .card-text').text(opponentHp)
-        console.log($('#yourOpponentLine'))
-        console.log($('#yourOpponentLine')[0])
-        console.log(opponentHp)
-        
-        //player loses HP
-        playerHp -= opponentCounterAttack 
-        $('#yourPlayerLine > .playerCard > .card-body > .card-text').text(playerHp)
-        console.log(playerHp)
-        
-        // player gets stronger by base attack (defend) 
-        playerAttack -= -playerDefend 
+      $("#attackButton").hide();
 
-            if(opponentHp <= 0 && playersCount >0){
-                    $('#yourOpponentLine > .playerCard > .card-body > .card-text').text('0');
-                    $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'));
-                    
-                    $('#yourOpponentText').text('Choose Next Opponent');
-                    $('#defeatOpponentText').text('Defeated Opponent');
-                    $('#storyBoxTextTop').text('You Have Defeated Your Oppenent');
-                    $('#storyBoxTextBottom').text('Choose Another');
-                    
-                    $(this).prop('disabled',true)
+      //show reload button
+      $("#storyBoxBtn").show();
+    }
 
-                    opponentSelect = false;
+    if (playerHp <= 0) {
+      $("#yourPlayerLine > .playerCard > .card-body > .card-text").text("0");
+      $(this).prop("disabled", true);
+      $("#storyBoxTextTop").text("You Have Been Defeated");
+      $("#storyBoxTextBottom").text("Play Again?");
 
-            } else if(opponentHp <= 0 && playersCount === 0){
-                $('#yourOpponentLine > .playerCard > .card-body > .card-text').text('0');
-                $('#defeatOpponentLine').append($('#yourOpponentLine > .playerCard'));
+      //show reload button
+      $("#storyBoxBtn").show();
+    }
+  });
 
-                $('#storyBoxTextTop').text('You Have Defeated all Opponents');
-                $('#storyBoxTextBottom').text('Play Again?');
-
-
-                $('#attackButton').hide();
-
-                //show reload button
-                $('#storyBoxBtn').show();
-
-            }
-
-            if(playerHp <= 0){
-                $('#yourPlayerLine > .playerCard > .card-body > .card-text').text('0')
-                $(this).prop('disabled',true)
-                $('#storyBoxTextTop').text('You Have Been Defeated')
-                $('#storyBoxTextBottom').text('Play Again?')
-
-                //show reload button
-                $('#storyBoxBtn').show();
-                
-            }
-
-            
-            
-    })
-
-    $('#storyBoxBtn').on('click',function() {
-        location.reload();
-    })
-        
+  $("#storyBoxBtn").on("click", function () {
+    location.reload();
+  });
 });
-
