@@ -18,7 +18,7 @@ const character = {
   armor: '3', // decreases opponent's attack
   projectiles: ['6', '5'], // allow power if op is turn they lose a turn based on agi
   },
-  inventory: []
+  inventory: ['1', '2', '3', '6', '6']
 } // TODO move to localstorage -> db
 
 const items = [
@@ -124,11 +124,26 @@ function renderEqupipment() {
   equipmentListEl.appendChild(projectile2El)
 }
 
+function renderInventorty() {
+  // TODO loop through equipment
+  character.inventory.forEach(itemId => {
+    const itemEl = document.createElement('li')
+    itemEl.setAttribute('class', 'list-group-item')
+
+    const item = items.find(i => i.id === itemId)
+    itemEl.textContent = `${item.name}: ${item.type}`
+
+    inventoryListEl.appendChild(itemEl)
+
+  })
+}
+
 function init() {
   
 
   renderStats()
   renderEqupipment()
+  renderInventorty()
 
 }
 
