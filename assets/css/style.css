@@ -97,7 +97,27 @@ button{
     
 }
 
+/* Player Select */
 
+.player-select-button {
+    display: inline-block;
+    width: 100%;
+    padding: 0px;
+    height: 50px;
+    background-color: aqua;
+    text-align: center;
+}
+
+.player-select-start-button {
+    background-color: aqua;
+    text-align: center;
+    margin: 5em auto;
+}
+
+.player-select-card {
+    max-height: 20em;
+    max-width: 30em;
+}
 
 
 
