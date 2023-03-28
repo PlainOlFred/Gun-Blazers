@@ -44,26 +44,24 @@
           <div class="characterSelect">
             <label>
               Name:
-              <input id="char-name-input" />
+              <input id="character-name-input" type="text"/>
             </label>
 
             <label>
               Select Class
-              <select name="cars" id="cars">
+              <select name="classSelect" id="character-class-select" disabled>
+                <option value="CS|SHRPSHTR">Please Select Class</option>
                 <option value="CS|SHRPSHTR">Sharp Shooter</option>
                 <option value="CS|DTY">Deputy</option>
                 <option value="CS|SHFF">Sheriff</option>
               </select>
             </label>
 
-            <ul>
-              <li>HP: 200</li>
-              <li>Attack: 5</li>
-              <li>Armor: 20</li>
-              <li>Coin: 100</li>
+            <ul id="character-attribute-list">
+ 
             </ul>
 
-            <button>Create Character</button>
+            <button id="create-character-btn">Create Character</button>
           </div>
 
           <div class="characterOufit">
