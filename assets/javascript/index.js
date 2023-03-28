@@ -3,10 +3,15 @@ const classSelect = document.querySelector('#character-class-select')
 const createCharacterBtn = document.querySelector('#create-character-btn')
 const createCharacterNameInput = document.querySelector('#character-name-input')
 const characterAttributeList = document.querySelector('#character-attribute-list')
+const characterShowdownBox = document.querySelector('#character-showdown-box')
+const opponentShowdownBox = document.querySelector('#opponent-showdown-box')
+
 
 // Select character
 let characterName
-let selectCharacter
+let selectedCharacter
+
+let selectedOppent = new Sharpshooter({name: 'dummy'})
 
 
 /* Create Character */
@@ -17,13 +22,13 @@ const handleCharacterClassSelect = (e) => {
   console.log(createCharacterNameInput.value)
   switch(value) {
     case 'CS|SHRPSHTR':
-      selectCharacter = new Sharpshooter({ name: characterName})
+      selectedCharacter = new Sharpshooter({ name: characterName})
     break
     case 'CS|DTY':
-      selectCharacter = new Deputy({ name: characterName})
+      selectedCharacter = new Deputy({ name: characterName})
     break
     case 'CS|SHFF':
-      selectCharacter = new Sheriff({ name: characterName})
+      selectedCharacter = new Sheriff({ name: characterName})
     break
   }
 
@@ -33,10 +38,10 @@ const handleCharacterClassSelect = (e) => {
 
 const displayCharacterAttributes = () => {
   const attributes = {
-    HP: selectCharacter._hp,
-    ATK: selectCharacter._attack,
-    DEF: selectCharacter._defense,
-    COIN: selectCharacter._coin
+    HP: selectedCharacter._hp,
+    ATK: selectedCharacter._attack,
+    DEF: selectedCharacter._defense,
+    COIN: selectedCharacter._coin
 
   }
 
@@ -51,7 +56,9 @@ const displayCharacterAttributes = () => {
 }
 
 const handleCreateCharacter = () => {
-  console.log(selectCharacter)
+  console.log(selectedCharacter)
+  displayCharacterShowdown()
+  displayOppentShowdown()
 }
 
 const handleCharacterNameInputChange = (e) => {
@@ -65,6 +72,84 @@ const handleCharacterNameInputChange = (e) => {
 
 }
 
+/* Select opponent */
+
+
+
+/* Showdown */
+const displayCharacterShowdown = () => {
+  characterShowdownBox.innerHTML = ''
+  const name = selectedCharacter._name
+  const hp = selectedCharacter._hp
+
+  // Display Name
+  const nameEl = document.createElement('h3')
+  nameEl.textContent = name
+  characterShowdownBox.appendChild(nameEl)
+
+  // Display HP
+  const hpEl = document.createElement('h3')
+  hpEl.textContent = "Health " + hp
+  characterShowdownBox.appendChild(hpEl)
+
+  // Display Buttons
+  const attackBtn = document.createElement('button')
+  const defendBtn = document.createElement('button')
+  const inventoryBtn = document.createElement('button')
+
+  attackBtn.textContent = 'Attack'
+  defendBtn.textContent = "Defend"
+  inventoryBtn.textContent = "Inventory"
+
+  attackBtn.onclick = handleCharacterAttack
+  defendBtn.onclick = handleCharacterDefense
+
+  characterShowdownBox.appendChild(attackBtn)
+  characterShowdownBox.appendChild(defendBtn)
+  characterShowdownBox.appendChild(inventoryBtn)
+
+}
+
+const displayOppentShowdown = () => {
+  console.log('Opponent: ', selectedOppent)
+  opponentShowdownBox.innerHTML = ''
+  const name = selectedOppent._name
+  const hp = selectedOppent._hp
+
+  // Display Name
+  const nameEl = document.createElement('h3')
+  nameEl.textContent = name
+  opponentShowdownBox.appendChild(nameEl)
+
+  // Display HP
+  const hpEl = document.createElement('h3')
+  hpEl.textContent = "Health " + hp
+  opponentShowdownBox.appendChild(hpEl)
+
+}
+
+
+
+const displayShowdownResults = () => {
+
+}
+
+const handleCharacterShowdownAction = () => {
+
+}
+
+const handleCharacterAttack = () => {
+  console.log('Attack', selectedCharacter._attack, selectedOppent._defense)
+  selectedOppent._hp = selectedOppent._hp - selectedCharacter._attack
+
+
+  displayCharacterShowdown()
+  displayOppentShowdown()
+}
+
+const handleCharacterDefense = () => {
+  console.log('Defend')
+}
 
 
 
