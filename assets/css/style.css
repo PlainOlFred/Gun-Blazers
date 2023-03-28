@@ -1,3 +1,46 @@
+:root {
+  --primary: #155b64;
+  --secondary: #1c99a4;
+  --tertiary: #bababa;
+  --black: #000000;
+  --white: #ffffff;
+  --text: #fefefe;
+}
+
+header {
+    padding: 20px;
+    background-color: var(--primary);
+    color: var(--tertiary);
+}
+
+header h1 {
+    display: inline-block;
+    font-size: 48px;
+    margin-bottom: 5px;
+}
+
+header nav {
+    /* padding-top: 5px; */
+    margin-right: 20px;
+    /* float: right; */
+    font-size: 20px;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+main {
+    width: 75%;
+    margin: 0 auto;
+}
+
+
 .jumbo {
     padding: 2rem;
 }
