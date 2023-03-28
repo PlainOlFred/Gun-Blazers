@@ -1,3 +1,13 @@
+:root {
+  --primary: #155b64;
+  --secondary: #1c99a4;
+  --tertiary: #bababa;
+  --black: #000000;
+  --white: #ffffff;
+  --text: #fefefe;
+}
+
+
 .jumbo {
     padding: 2rem;
 }
