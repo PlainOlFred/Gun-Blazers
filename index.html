@@ -17,7 +17,9 @@
       <h1>Gun Blazers</h1>
       <nav>
         <ul>
-          <li><a href="#outfit-character" role="button">Outfit Character</a></li>
+          <li>
+            <a href="#outfit-character" role="button">Outfit Character</a>
+          </li>
           <li><a href="#showdown" role="button">Show Down</a></li>
         </ul>
       </nav>
@@ -33,22 +35,50 @@
           test you or you may want to test them first. So make you are in
           fighting trim and fully equipped.
         </p>
-        <hr/>
+        <hr />
       </section>
 
       <section id="outfit-character">
         <h1 class="display-4">Outfit Character</h1>
-        <hr/>
+        <div class="characterContainer">
+          <div class="characterSelect">
+            <label>
+              Name:
+              <input id="char-name-input" />
+            </label>
+
+            <label>
+              Select Class
+              <select name="cars" id="cars">
+                <option value="CS|SHRPSHTR">Sharp Shooter</option>
+                <option value="CS|DTY">Deputy</option>
+                <option value="CS|SHFF">Sheriff</option>
+              </select>
+            </label>
+
+            <ul>
+              <li>HP: 200</li>
+              <li>Attack: 5</li>
+              <li>Armor: 20</li>
+              <li>Coin: 100</li>
+            </ul>
+
+            <button>Create Character</button>
+          </div>
+
+          <div class="characterOufit">
+            <h1>gear</h1>
+          </div>
+        </div>
+        <hr />
       </section>
 
       <section id="showdown">
         <h1 class="display-4">Show Down</h1>
-        
-        <hr/>
+
+        <hr />
       </section>
     </main>
-
-  
 
     <script src="assets/javascript/index.js"></script>
   </body>
