@@ -9,163 +9,76 @@
     />
 
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-    />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-
-    <title>Gun Blazers 2</title>
+    <title>Gun Blazers</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Gun Blazers</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="./index.html"
-              >Home<span class="sr-only">(current)</span></a
-            >
+    <header>
+      <h1>Gun Blazers</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="#outfit-character" role="button">Outfit Character</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="./character.html"
-              >Characters<span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="./showdown.html"
-              >Showndown 2<span class="sr-only">(current)</span></a
-            >
-          </li>
+          <li><a href="#showdown" role="button">Show Down</a></li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
+    <main>
+      <section id="instructions">
+        <h1 class="display-4">Welcome to Gun Blazers</h1>
+        <p class="lead">
+          It is the wild west of the Future! Can you survie in this new world
+          while others will do anything to do the same. Enter the world by
+          oufitting your character. Survive in the world by training your
+          character and collect awards. As you grow stronger challengers will
+          test you or you may want to test them first. So make you are in
+          fighting trim and fully equipped.
+        </p>
+        <hr />
+      </section>
 
-    <div class="jumbotron jumbotron-fluid jumbo">
-      <h1 class="display-4">Gun Blazers!</h1>
-      <p class="lead">
-        It is the wild west of the Future! Can you survie in this new world
-        while others will do anythin to do the same. Enter the world by
-        oufitting your character. Survive in the world by training your
-        character and collect awards. As you grow stronger challengers will test
-        you or you may want to test them first. So make you are in fighting trim
-        and fully equipped.
-      </p>
-      <hr class="my-4" />
-      <a class="btn btn-success btn-lg" href="./character.html" role="button"
-        >Outfit Your Character</a
-      >
-      <a class="btn btn-primary btn-lg" href="./showdown.html" role="button"
-        >Train Your Character</a
-      >
-    </div>
+      <section id="outfit-character">
+        <h1 class="display-4">Outfit Character</h1>
+        <div class="characterContainer">
+          <div class="characterSelect">
+            <label>
+              Name:
+              <input id="character-name-input" type="text"/>
+            </label>
 
-    <div class="container">
-      <!-- How to Play -->
-      <div class="row home-section">
-        <div class="card" style="width: 100%">
-            <div class="card-header">Learn how to Play</div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item d-flex justify-content-between align-items-center">Creating Character <span>Read</span></li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">Outfit and Train Character <span>Read</span></li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">Showdown Challenge <span>Read</span></li>
+            <label>
+              Select Class
+              <select name="classSelect" id="character-class-select" disabled>
+                <option value="CS|SHRPSHTR">Please Select Class</option>
+                <option value="CS|SHRPSHTR">Sharp Shooter</option>
+                <option value="CS|DTY">Deputy</option>
+                <option value="CS|SHFF">Sheriff</option>
+              </select>
+            </label>
+
+            <ul id="character-attribute-list">
+ 
             </ul>
-        </div>
-      </div>
-      <!-- Articles Tips -->
-      <div class="row home-section">
-        <div class="card" style="width: 100%">
-            <div class="card-header">Newsfeed</div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item d-flex justify-content-between align-items-center">This Month Championship <spam>Enter</spam> </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">Last Month Championship <span>Watch</span></li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">Lastest in Gun Blazer <span>Read</span></li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">Boost your outfit <span>Read</span></li>
-            </ul>
-        </div>
-      </div>
-      <!-- LeaderBoard -->
-      <div class="row home-section">
-        <div class="card" style="width: 100%">
-            <div class="card-header">LeaderBoard</div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-								<span>User one</span>
-								<span>lvl 100</span>
-								<span>lastest battle: 08/22/2022</span>
-								<span>srteak: 40</span>
-								<span>Challenge</span>
-							</li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-								<span>User one</span>
-								<span>lvl 100</span>
-								<span>lastest battle: 08/22/2022</span>
-								<span>srteak: 40</span>
-								<span>Challenge</span>
-							</li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-								<span>User one</span>
-								<span>lvl 100</span>
-								<span>lastest battle: 08/22/2022</span>
-								<span>srteak: 40</span>
-								<span>Challenge</span>
-							</li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-								<span>User one</span>
-								<span>lvl 100</span>
-								<span>lastest battle: 08/22/2022</span>
-								<span>srteak: 40</span>
-								<span>Challenge</span>
-							</li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-								<span>User one</span>
-								<span>lvl 100</span>
-								<span>lastest battle: 08/22/2022</span>
-								<span>srteak: 40</span>
-								<span>Challenge</span>
-							</li>
-            </ul>
-        </div>
-      </div>
-    </div>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
+            <button id="create-character-btn">Create Character</button>
+          </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
+          <div class="characterOufit">
+            <h1>gear</h1>
+          </div>
+        </div>
+        <hr />
+      </section>
+
+      <section id="showdown">
+        <h1 class="display-4">Show Down</h1>
+
+        <hr />
+      </section>
+    </main>
+
+    <script src="lib/CharacterClass.js"></script>
     <script src="assets/javascript/index.js"></script>
   </body>
 </html>
