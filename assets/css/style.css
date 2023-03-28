@@ -35,6 +35,11 @@ header nav ul li {
     margin-left: 25px;
 }
 
+main {
+    width: 75%;
+    margin: 0 auto;
+}
+
 
 .jumbo {
     padding: 2rem;
