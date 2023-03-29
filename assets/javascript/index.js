@@ -5,7 +5,7 @@ const createCharacterNameInput = document.querySelector('#character-name-input')
 const characterAttributeList = document.querySelector('#character-attribute-list')
 const characterShowdownBox = document.querySelector('#character-showdown-box')
 const opponentShowdownBox = document.querySelector('#opponent-showdown-box')
-
+const beginShowdownBtn = document.querySelector('#begin-showdown-btn')
 
 // Select character
 let characterName
@@ -59,6 +59,9 @@ const handleCreateCharacter = () => {
   console.log(selectedCharacter)
   displayCharacterShowdown()
   displayOppentShowdown()
+
+
+  beginShowdownBtn.removeAttribute('disabled')
 }
 
 const handleCharacterNameInputChange = (e) => {
@@ -111,7 +114,6 @@ const displayCharacterShowdown = () => {
 }
 
 const displayOppentShowdown = () => {
-  console.log('Opponent: ', selectedOppent)
   opponentShowdownBox.innerHTML = ''
   const name = selectedOppent._name
   const hp = selectedOppent._hp
@@ -128,6 +130,19 @@ const displayOppentShowdown = () => {
 
 }
 
+const displayShowndownRoundResults = () => {
+  // You took _ Damange
+  // You dealt _ DAmage
+  // You Died
+  // You Defeated
+}
+
+const displayShowndownResults = () => {
+  // You took _ Damange
+  // You dealt _ DAmage
+  // You Died
+  // You Defeated
+}
 
 
 const displayShowdownResults = () => {
@@ -152,6 +167,19 @@ const handleCharacterDefense = () => {
 }
 
 
+const showdownSqeuence = async () => {
+  beginShowdownBtn.setAttribute('class', 'hide')
+  beginShowdownBtn.removeEventListener('click', showdownSqeuence)
+
+  console.log('fight')
+  // while(selectedCharacter._isAlive || selectedOppent._isAlive) {
+  //   handleCharacterAttack()
+  // }
+
+}
+
+
+
 
 
 
@@ -160,3 +188,5 @@ const handleCharacterDefense = () => {
 classSelect.addEventListener('change', handleCharacterClassSelect)
 createCharacterBtn.addEventListener('click', handleCreateCharacter)
 createCharacterNameInput.addEventListener('input', handleCharacterNameInputChange)
+
+beginShowdownBtn.addEventListener('click', showdownSqeuence)
