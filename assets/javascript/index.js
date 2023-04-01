@@ -96,20 +96,28 @@ const displayCharacterShowdown = () => {
   characterShowdownBox.appendChild(hpEl)
 
   // Display Buttons
+  const actionControlEl = document.createElement('div')
   const attackBtn = document.createElement('button')
   const defendBtn = document.createElement('button')
   const inventoryBtn = document.createElement('button')
+
+  actionControlEl.setAttribute('id', 'action-control')
+  attackBtn.setAttribute('id', 'action-control-attack')
+  defendBtn.setAttribute('id', 'action-control-defend')
 
   attackBtn.textContent = 'Attack'
   defendBtn.textContent = "Defend"
   inventoryBtn.textContent = "Inventory"
 
-  attackBtn.onclick = handleCharacterAttack
-  defendBtn.onclick = handleCharacterDefense
+  // attackBtn.onclick = handleCharacterAttack
+  // defendBtn.onclick = handleCharacterDefense
 
-  characterShowdownBox.appendChild(attackBtn)
-  characterShowdownBox.appendChild(defendBtn)
-  characterShowdownBox.appendChild(inventoryBtn)
+  actionControlEl.appendChild(attackBtn)
+  actionControlEl.appendChild(defendBtn)
+  actionControlEl.appendChild(inventoryBtn)
+
+  characterShowdownBox.appendChild(actionControlEl)
+  
 
 }
 
@@ -171,10 +179,42 @@ const showdownSqeuence = async () => {
   beginShowdownBtn.setAttribute('class', 'hide')
   beginShowdownBtn.removeEventListener('click', showdownSqeuence)
 
+  let isCharacterTurn = true
+
+  let i = 0
   console.log('fight')
-  // while(selectedCharacter._isAlive || selectedOppent._isAlive) {
-  //   handleCharacterAttack()
-  // }
+  const showdown = new Showdown(selectedCharacter, selectedOppent)
+
+  while(!showdown._end) {
+    
+
+    const characterInput = await new Promise((resolve, reject) => {
+      document.querySelector('#action-control').addEventListener('click', (e)=> {
+        switch(e.target.id) {
+          case 'action-control-attack':
+            handleCharacterAttack()
+            break
+          case 'action-control-defend':
+            handleCharacterDefense()
+            break
+        }
+
+        
+        if(!showdown._opponent._isAlive || !showdown._player._isAlive) {
+          console.log('still alive')
+          showdown._end = true
+        }
+
+
+        resolve()
+      })
+    })
+
+    console.log('round', )
+    i ++
+  }
+
+  console.log(showdown)
 
 }
 
