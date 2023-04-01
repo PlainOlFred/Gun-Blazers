@@ -73,12 +73,33 @@
 
       <section id="showdown">
         <h1 class="display-4">Show Down</h1>
+        <div>
+            <label>
+              Select Oppenent
+              <select name="classSelect" id="opponent-select" >
+                <option value="OS|SHRPSHTR">Please Select Opponent</option>
+                <option value="OS|SHRPSHTR">Sharp Shooter</option>
+                <option value="OS|DTY">Deputy</option>
+                <option value="OS|SHFF">Sheriff</option>
+              </select>
+            </label>
 
+        </div>
+
+
+        <div class="showdownContainer">
+          <div id="character-showdown-box"></div>
+          <div>
+            <button id="begin-showdown-btn" disabled>Begin Showdown</button>
+          </div>
+          <div id="opponent-showdown-box"></div>
+        </div>
         <hr />
       </section>
     </main>
 
     <script src="lib/CharacterClass.js"></script>
+    <script src="lib/ShowdownClass.js"></script>
     <script src="assets/javascript/index.js"></script>
   </body>
 </html>

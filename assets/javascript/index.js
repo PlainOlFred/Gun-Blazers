@@ -3,10 +3,15 @@ const classSelect = document.querySelector('#character-class-select')
 const createCharacterBtn = document.querySelector('#create-character-btn')
 const createCharacterNameInput = document.querySelector('#character-name-input')
 const characterAttributeList = document.querySelector('#character-attribute-list')
+const characterShowdownBox = document.querySelector('#character-showdown-box')
+const opponentShowdownBox = document.querySelector('#opponent-showdown-box')
+const beginShowdownBtn = document.querySelector('#begin-showdown-btn')
 
 // Select character
 let characterName
-let selectCharacter
+let selectedCharacter
+
+let selectedOppent = new Sharpshooter({name: 'dummy'})
 
 
 /* Create Character */
@@ -17,13 +22,13 @@ const handleCharacterClassSelect = (e) => {
   console.log(createCharacterNameInput.value)
   switch(value) {
     case 'CS|SHRPSHTR':
-      selectCharacter = new Sharpshooter({ name: characterName})
+      selectedCharacter = new Sharpshooter({ name: characterName})
     break
     case 'CS|DTY':
-      selectCharacter = new Deputy({ name: characterName})
+      selectedCharacter = new Deputy({ name: characterName})
     break
     case 'CS|SHFF':
-      selectCharacter = new Sheriff({ name: characterName})
+      selectedCharacter = new Sheriff({ name: characterName})
     break
   }
 
@@ -33,10 +38,10 @@ const handleCharacterClassSelect = (e) => {
 
 const displayCharacterAttributes = () => {
   const attributes = {
-    HP: selectCharacter._hp,
-    ATK: selectCharacter._attack,
-    DEF: selectCharacter._defense,
-    COIN: selectCharacter._coin
+    HP: selectedCharacter._hp,
+    ATK: selectedCharacter._attack,
+    DEF: selectedCharacter._defense,
+    COIN: selectedCharacter._coin
 
   }
 
@@ -51,7 +56,12 @@ const displayCharacterAttributes = () => {
 }
 
 const handleCreateCharacter = () => {
-  console.log(selectCharacter)
+  console.log(selectedCharacter)
+  displayCharacterShowdown()
+  displayOppentShowdown()
+
+
+  beginShowdownBtn.removeAttribute('disabled')
 }
 
 const handleCharacterNameInputChange = (e) => {
@@ -65,6 +75,149 @@ const handleCharacterNameInputChange = (e) => {
 
 }
 
+/* Select opponent */
+
+
+
+/* Showdown */
+const displayCharacterShowdown = () => {
+  characterShowdownBox.innerHTML = ''
+  const name = selectedCharacter._name
+  const hp = selectedCharacter._hp
+
+  // Display Name
+  const nameEl = document.createElement('h3')
+  nameEl.textContent = name
+  characterShowdownBox.appendChild(nameEl)
+
+  // Display HP
+  const hpEl = document.createElement('h3')
+  hpEl.textContent = "Health " + hp
+  characterShowdownBox.appendChild(hpEl)
+
+  // Display Buttons
+  const actionControlEl = document.createElement('div')
+  const attackBtn = document.createElement('button')
+  const defendBtn = document.createElement('button')
+  const inventoryBtn = document.createElement('button')
+
+  actionControlEl.setAttribute('id', 'action-control')
+  attackBtn.setAttribute('id', 'action-control-attack')
+  defendBtn.setAttribute('id', 'action-control-defend')
+
+  attackBtn.textContent = 'Attack'
+  defendBtn.textContent = "Defend"
+  inventoryBtn.textContent = "Inventory"
+
+  // attackBtn.onclick = handleCharacterAttack
+  // defendBtn.onclick = handleCharacterDefense
+
+  actionControlEl.appendChild(attackBtn)
+  actionControlEl.appendChild(defendBtn)
+  actionControlEl.appendChild(inventoryBtn)
+
+  characterShowdownBox.appendChild(actionControlEl)
+  
+
+}
+
+const displayOppentShowdown = () => {
+  opponentShowdownBox.innerHTML = ''
+  const name = selectedOppent._name
+  const hp = selectedOppent._hp
+
+  // Display Name
+  const nameEl = document.createElement('h3')
+  nameEl.textContent = name
+  opponentShowdownBox.appendChild(nameEl)
+
+  // Display HP
+  const hpEl = document.createElement('h3')
+  hpEl.textContent = "Health " + hp
+  opponentShowdownBox.appendChild(hpEl)
+
+}
+
+const displayShowndownRoundResults = () => {
+  // You took _ Damange
+  // You dealt _ DAmage
+  // You Died
+  // You Defeated
+}
+
+const displayShowndownResults = () => {
+  // You took _ Damange
+  // You dealt _ DAmage
+  // You Died
+  // You Defeated
+}
+
+
+const displayShowdownResults = () => {
+
+}
+
+const handleCharacterShowdownAction = () => {
+
+}
+
+const handleCharacterAttack = () => {
+  console.log('Attack', selectedCharacter._attack, selectedOppent._defense)
+  selectedOppent._hp = selectedOppent._hp - selectedCharacter._attack
+
+
+  displayCharacterShowdown()
+  displayOppentShowdown()
+}
+
+const handleCharacterDefense = () => {
+  console.log('Defend')
+}
+
+
+const showdownSqeuence = async () => {
+  beginShowdownBtn.setAttribute('class', 'hide')
+  beginShowdownBtn.removeEventListener('click', showdownSqeuence)
+
+  let isCharacterTurn = true
+
+  let i = 0
+  console.log('fight')
+  const showdown = new Showdown(selectedCharacter, selectedOppent)
+
+  while(!showdown._end) {
+    
+
+    const characterInput = await new Promise((resolve, reject) => {
+      document.querySelector('#action-control').addEventListener('click', (e)=> {
+        switch(e.target.id) {
+          case 'action-control-attack':
+            handleCharacterAttack()
+            break
+          case 'action-control-defend':
+            handleCharacterDefense()
+            break
+        }
+
+        
+        if(!showdown._opponent._isAlive || !showdown._player._isAlive) {
+          console.log('still alive')
+          showdown._end = true
+        }
+
+
+        resolve()
+      })
+    })
+
+    console.log('round', )
+    i ++
+  }
+
+  console.log(showdown)
+
+}
+
 
 
 
@@ -75,3 +228,5 @@ const handleCharacterNameInputChange = (e) => {
 classSelect.addEventListener('change', handleCharacterClassSelect)
 createCharacterBtn.addEventListener('click', handleCreateCharacter)
 createCharacterNameInput.addEventListener('input', handleCharacterNameInputChange)
+
+beginShowdownBtn.addEventListener('click', showdownSqeuence)
